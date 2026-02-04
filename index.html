@@ -124,7 +124,7 @@
                 <span class="lock-tag" id="tag1">🔒 Locked</span>
                 <h3>SG-Gaming-VIP-01 🇸🇬</h3>
                 <div class="sub-text">VLESS / WS | Port: 443</div>
-                <input type="hidden" id="link1" value="ဒီနေရာမှာ_Server1_ရဲ့_Link_အစစ်ကိုထည့်ပါ">
+                <input type="hidden" id="link1" value="vless://e8841490-6725-45ec-9d6f-730f5ec83d6a@sg1.vipconfig.com:443?path=%2F&security=tls&encryption=none&type=ws#SG-VIP-1">
                 <button class="copy-btn" id="btn1" onclick="copyConfig('link1')">📋 Copy VIP Config 1</button>
             </div>
 
@@ -132,7 +132,7 @@
                 <span class="lock-tag" id="tag2">🔒 Locked</span>
                 <h3>TH-💯-01 🇹🇭</h3>
                 <div class="sub-text">VLESS / TLS | Port: 443</div>
-                <input type="hidden" id="link2" value="vless://d342d11e-d424-4583-b36e-524ab1f0afa4@www.speedtest.net:443?path=%2F%3Fed%3D2048&security=tls&encryption=none&insecure=1&host=a.openzoom.indevs.in&fp=randomized&type=ws&allowInsecure=1&sni=a.openzoom.indevs.in#a.openzoom.indevs.in">
+                <input type="hidden" id="link2" value="vless://d342d11e-d424-4583-b36e-524ab1f0afa4@www.speedtest.net:443?path=%2F%3Fed%3D2048&security=tls&encryption=none&insecure=1&host=a.openzoom.indevs.in&fp=randomized&type=ws&allowInsecure=1&sni=a.openzoom.indevs.in#TH-VIP-2">
                 <button class="copy-btn" id="btn2" onclick="copyConfig('link2')">📋 Copy VIP Config 2</button>
             </div>
 
@@ -140,17 +140,9 @@
                 <span class="lock-tag" id="tag3">🔒 Locked</span> 
                 <h3>SG-Gaming-VIP-03 🇸🇬</h3>
                 <div class="sub-text">VLESS / WS | Port: 443</div>
-                <input type="hidden" id="link3" value="vless://3712c996-5554-475d-c651-76fc73c8e914@openzoom.indevs.in:443?path=%2Fzawmoewin&security=tls&alpn=h3%2Ch2%2Chttp%2F1.1&encryption=none&insecure=1&host=openzoom.indevs.in&type=ws&allowInsecure=1&sni=www.speedtest.net#TRUE-AIS.pubg%20speed"> 
+                <input type="hidden" id="link3" value="vless://3712c996-5554-475d-c651-76fc73c8e914@openzoom.indevs.in:443?path=%2Fzawmoewin&security=tls&alpn=h3%2Ch2%2Chttp%2F1.1&encryption=none&insecure=1&host=openzoom.indevs.in&type=ws&allowInsecure=1&sni=www.speedtest.net#SG-VIP-3"> 
                 <button class="copy-btn" id="btn3" onclick="copyConfig('link3')">📋 Copy VIP Config 3</button> 
             </div>
-
-            <div class="server-card">
-                <span class="lock-tag" id="tag4">🔒 Locked</span>
-                <h3>TH-Gaming-Premium 🇹🇭</h3>
-                <div class="sub-text">VLESS / TLS | Port: 443</div>
-                <input type="hidden" id="link4" value="ဒီနေရာမှာ_Server4_ရဲ့_Link_အစစ်ကိုထည့်ပါ">
-                <button class="copy-btn" id="btn4" onclick="copyConfig('link4')">📋 Copy VIP Config 4</button>
-            </div>     
         </div>
     </div>
 
@@ -188,13 +180,14 @@
                 return;
             }
             var text = document.getElementById(id).value;
-            if (text.includes("ဒီနေရာမှာ")) {
-                alert("သတိပေးချက်- အစ်ကို့ရဲ့ Link အစစ်ကို ကုဒ်ထဲမှာ မထည့်ရသေးပါဘူး! ⚠️");
-                return;
-            }
-            navigator.clipboard.writeText(text);
-            alert("VIP Config Copied! ✅");
+            
+            navigator.clipboard.writeText(text).then(function() {
+                alert("VIP Config Copied! ✅");
+            }, function(err) {
+                alert("Error: Copy လုပ်မရပါဘူးဗျာ။");
+            });
         }
     </script>
 </body>
-</html>
+                                                                 </html>
+

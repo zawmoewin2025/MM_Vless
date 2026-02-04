@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP PROXY - Premium Edition</title>
+    <style>
+        :root {
+            --primary-yellow: #facc15;
+            --bg-dark: #0d1117;
+            --card-bg: #161b22;
+            --text-gray: #8b949e;
+            --cyan-accent: #4dcad9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        
+        body { 
+            background-color: var(--bg-dark); 
+            color: #ffffff; 
+            display: flex; 
+            justify-content: center; 
+            padding: 20px; 
+            min-height: 100vh;
+        }
+
+        .container { width: 100%; max-width: 480px; }
+
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--cyan-accent); letter-spacing: 1px; }
+        .admin-link { 
+            background: rgba(33, 38, 45, 0.7); padding: 8px 16px; border-radius: 10px; 
+            color: var(--cyan-accent); text-decoration: none; font-size: 0.9rem; border: 1px solid #30363d;
+            display: flex; align-items: center; gap: 5px;
+        }
+
+        .status-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+        .status-box { 
+            background: var(--card-bg); padding: 15px; border-radius: 15px; 
+            border: 1px solid #30363d; border-left: 4px solid var(--cyan-accent);
+        }
+        .status-label { font-size: 0.7rem; color: var(--text-gray); text-transform: uppercase; margin-bottom: 5px; }
+        .status-value { font-weight: bold; font-size: 1rem; }
+
+        marquee { color: var(--primary-yellow); font-size: 0.9rem; margin-bottom: 10px; display: block; }
+
+        .password-card { 
+            background: var(--card-bg); border-radius: 20px; padding: 25px; 
+            border: 1.5px solid var(--primary-yellow); text-align: center; margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        .password-card h2 { color: var(--primary-yellow); font-size: 1.15rem; margin-bottom: 8px; }
+        .password-card p { color: var(--text-gray); font-size: 0.8rem; margin-bottom: 18px; }
+        
+        .input-style { 
+            width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #30363d; 
+            background: #010409; color: var(--primary-yellow); text-align: center; 
+            font-size: 1.2rem; margin-bottom: 15px; outline: none; transition: 0.3s;
+        }
+        .input-style:focus { border-color: var(--primary-yellow); }
+
+        .unlock-btn { 
+            width: 100%; padding: 15px; border-radius: 12px; border: none; 
+            background: var(--primary-yellow); color: #000; font-weight: bold; 
+            cursor: pointer; font-size: 1rem; transition: 0.2s;
+        }
+
+        .server-card { 
+            background: var(--card-bg); border-radius: 18px; padding: 20px; 
+            margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); position: relative;
+        }
+        .lock-tag {
+            position: absolute; top: 18px; right: 20px; font-size: 0.7rem; 
+            color: var(--primary-yellow); background: rgba(250,204,21,0.1); 
+            padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(250,204,21,0.2);
+        }
+        .server-card h3 { font-size: 1rem; margin-bottom: 5px; color: #f0f6fc; }
+        .server-card .sub-text { font-size: 0.75rem; color: var(--text-gray); margin-bottom: 15px; }
+
+        .copy-btn { 
+            width: 100%; padding: 14px; border-radius: 12px; border: none; 
+            background: #21262d; color: #484f58; font-weight: bold; cursor: not-allowed; 
+            display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s;
+        }
+        .copy-btn.active { 
+            background: #0097b2; color: #ffffff; cursor: pointer; 
+            box-shadow: 0 4px 12px rgba(0, 151, 178, 0.3); 
+        }
+
+        #result-msg { text-align: center; margin-top: 10px; font-size: 0.85rem; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">VIP PROXY</div>
+            <a href="https://m.me/vpnconfigvip" class="admin-link">💶 VIP ဆက်သွယ်ရန်</a>
+        </div>
+
+        <div class="status-row">
+            <div class="status-box">
+                <div class="status-label">System Status</div>
+                <div class="status-value" style="color:#4ade80;">● Running</div>
+            </div>
+            <div class="status-box">
+                <div class="status-label">Access Level</div>
+                <div class="status-value">Premium</div>
+            </div>
+        </div>
+
+        <marquee>💶 VIP Password ဝယ်ယူရန် Admin ကို ဆက်သွယ်ပါ 🔑</marquee>
+
+        <div class="password-card">
+            <h2>Game VIP Password 🔑</h2>
+            <p>Enter password to see VIP servers</p>
+            <input type="password" id="passInput" class="input-style" placeholder="Enter Password">
+            <button class="unlock-btn" onclick="verifyAccess()">Unlock Copy Access</button>
+            <p id="result-msg"></p>
+        </div>
+
+        <div id="server-container">
+            <div class="server-card">
+                <span class="lock-tag" id="tag1">🔒 Locked</span>
+                <h3>SG-Gaming-VIP-01 🇸🇬</h3>
+                <div class="sub-text">VLESS / WS | Port: 443</div>
+                <input type="hidden" id="link1" value="ဒီနေရာမှာ_Server1_ရဲ့_Link_အစစ်ကိုထည့်ပါ">
+                <button class="copy-btn" id="btn1" onclick="copyConfig('link1')">📋 Copy VIP Config 1</button>
+            </div>
+
+            <div class="server-card">
+                <span class="lock-tag" id="tag2">🔒 Locked</span>
+                <h3>TH-💯-01 🇹🇭</h3>
+                <div class="sub-text">VLESS / TLS | Port: 443</div>
+                <input type="hidden" id="link2" value="vless://d342d11e-d424-4583-b36e-524ab1f0afa4@www.speedtest.net:443?path=%2F%3Fed%3D2048&security=tls&encryption=none&insecure=1&host=a.openzoom.indevs.in&fp=randomized&type=ws&allowInsecure=1&sni=a.openzoom.indevs.in#a.openzoom.indevs.in">
+                <button class="copy-btn" id="btn2" onclick="copyConfig('link2')">📋 Copy VIP Config 2</button>
+            </div>
+
+            <div class="server-card">
+                <span class="lock-tag" id="tag3">🔒 Locked</span> 
+                <h3>SG-Gaming-VIP-03 🇸🇬</h3>
+                <div class="sub-text">VLESS / WS | Port: 443</div>
+                <input type="hidden" id="link3" value="vless://3712c996-5554-475d-c651-76fc73c8e914@openzoom.indevs.in:443?path=%2Fzawmoewin&security=tls&alpn=h3%2Ch2%2Chttp%2F1.1&encryption=none&insecure=1&host=openzoom.indevs.in&type=ws&allowInsecure=1&sni=www.speedtest.net#TRUE-AIS.pubg%20speed"> 
+                <button class="copy-btn" id="btn3" onclick="copyConfig('link3')">📋 Copy VIP Config 3</button> 
+            </div>
+
+            <div class="server-card">
+                <span class="lock-tag" id="tag4">🔒 Locked</span>
+                <h3>TH-Gaming-Premium 🇹🇭</h3>
+                <div class="sub-text">VLESS / TLS | Port: 443</div>
+                <input type="hidden" id="link4" value="ဒီနေရာမှာ_Server4_ရဲ့_Link_အစစ်ကိုထည့်ပါ">
+                <button class="copy-btn" id="btn4" onclick="copyConfig('link4')">📋 Copy VIP Config 4</button>
+            </div>     
+        </div>
+    </div>
+
+    <script>
+        var isVIP = false;
+        var masterPassword = "zawmoewin2026"; 
+
+        function verifyAccess() {
+            var input = document.getElementById("passInput").value;
+            var msg = document.getElementById("result-msg");
+
+            if (input === masterPassword) {
+                isVIP = true;
+                msg.style.color = "#4ade80";
+                msg.innerText = "VIP Unlocked! ✅ Copy Access Granted.";
+                msg.style.display = "block";
+                
+                document.querySelectorAll('.copy-btn').forEach(btn => btn.classList.add('active'));
+                document.querySelectorAll('.lock-tag').forEach(tag => {
+                    tag.innerText = "✅ Unlocked";
+                    tag.style.color = "#4ade80";
+                    tag.style.background = "rgba(74,222,128,0.1)";
+                    tag.style.border = "1px solid rgba(74,222,128,0.2)";
+                });
+            } else {
+                msg.style.color = "#ff4d4d";
+                msg.innerText = "Wrong Password! ❌ Please try again.";
+                msg.style.display = "block";
+            }
+        }
+
+        function copyConfig(id) {
+            if (!isVIP) {
+                alert("ကျေးဇူးပြု၍ VIP Password ကို အရင်ရိုက်ထည့်ပါ! 🔒");
+                return;
+            }
+            var text = document.getElementById(id).value;
+            if (text.includes("ဒီနေရာမှာ")) {
+                alert("သတိပေးချက်- အစ်ကို့ရဲ့ Link အစစ်ကို ကုဒ်ထဲမှာ မထည့်ရသေးပါဘူး! ⚠️");
+                return;
+            }
+            navigator.clipboard.writeText(text);
+            alert("VIP Config Copied! ✅");
+        }
+    </script>
+</body>
+</html>

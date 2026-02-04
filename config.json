@@ -4,7 +4,7 @@
       "port": 8080,
       "protocol": "vless",
       "settings": {
-        "clients": [{ "id": "9eda6c89-e7e4-4e17-bbc7-90ed580a0f42" }],
+        "clients": [{ "id": "71bf1fdc-3a4f-4d84-abd2-be02d4959f17" }],
         "decryption": "none",
         "fallbacks": [{ "dest": 8081 }] 
       },

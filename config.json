@@ -1,0 +1,18 @@
+{
+  "inbounds": [
+    {
+      "port": 8080,
+      "protocol": "vless",
+      "settings": {
+        "clients": [{ "id": "f525e7b1-e7c4-449c-9dcb-a8a7c5b7a8ab" }],
+        "decryption": "none",
+        "fallbacks": [{ "dest": 8081 }] 
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": { "path": "/zawmoewin" }
+      }
+    }
+  ],
+  "outbounds": [{ "protocol": "freedom" }]
+}

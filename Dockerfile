@@ -23,4 +23,5 @@ EXPOSE 8080
 # TUNNEL_TOKEN ကို Railway Environment Variable မှာ ထည့်ပေးရပါမယ်
 CMD ./xray -config config.json & \
     caddy file-server --listen :8081 --root /app & \
-    ./cloudflared tunnel --no-autoupdate run --token eyJhIjoiOGQxZmJmOGJjOWM1NmFkOGYyMjZhMGM1MmNlZjgxNzIiLCJ0IjoiNzUxZDRmNTctMzZmMC00ODMwLTlmMWItNjc5ZTI0NzlmMzc3IiwicyI6Ilpqa3hNR0ZsTXpFdFpqSXlNeTAwWldGakxXRXhOV0V0TmpNeVlUTTFPR1U0TVRNeSJ9
+    ./cloudflared tunnel --no-autoupdate run --token 
+eyJhIjoiNTBlNjY3NDA4YTBjMWQ1MmVmNTBhZmIyNGViNmViOGEiLCJ0IjoiYjNjZDJhMDgtZDUwYi00OTlkLWJmYWItZWJhMWE4ZWM4ZGMzIiwicyI6Ik16WTVORGs1TjJRdE16TXpPQzAwTlRObUxXRTJNekV0WmpZMk1qSmtOalUxTkdJMiJ9
